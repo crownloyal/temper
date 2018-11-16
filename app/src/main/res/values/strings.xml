@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Temper</string>
+    <string name="textview__right">Celsius</string>
+    <string name="textview_result">Result</string>
+    <string name="button__convert">Convert</string>
+    <string name="edittext_input">0</string>
+</resources>
