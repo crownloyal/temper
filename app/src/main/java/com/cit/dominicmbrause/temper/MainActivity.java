@@ -18,18 +18,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void convert(View view) {
-        double convertedLeft = Double.parseDouble(fahr.toKelvin(this.getInput()));
+        double convertedLeft = Double.parseDouble(fahr.toKelvin(this.getInput(view)));
         double result = Double.parseDouble(celsius.fromKelvin(convertedLeft));
 
         Log.i("DEBUG:", String.valueOf(result));
 
-        updateResult(result, fahr);
+        updateResult(view, result, fahr);
     }
-    private void updateResult(double result, TemperatureUnit unit) {
+    private void updateResult(View view, double result, TemperatureUnit unit) {
         TextView textLeft = (TextView) findViewById(R.id.TextView__result);
         textLeft.setText(unit.name + " " + String.valueOf(result));
     }
-    private double getInput() {
+    private double getInput(View view) {
         EditText input = (EditText) findViewById(R.id.editText__input);
         double inputValue = Double.parseDouble(input.getText().toString());
 
@@ -48,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
         textRight.setText(fahr.name);
 
         // Prepare
+        Button convertButton = findViewById(R.id.button__convert);
+        convertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                convert(v);
+            }
+        });
     }
 
 

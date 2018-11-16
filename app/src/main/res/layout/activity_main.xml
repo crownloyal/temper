@@ -57,7 +57,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="144dp"
-        android:onClick="convert"
+        android:elevation="8dp"
         android:text="@string/button__convert"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
