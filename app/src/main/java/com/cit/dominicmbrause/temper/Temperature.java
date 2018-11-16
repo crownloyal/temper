@@ -7,7 +7,7 @@ interface Temperature {
     String name = null;
     ExpressionBuilder functionbase = null;
 
-    public String toKelvin(double value);
-    public String fromKelvin(double value);
+    public double toKelvin(double value);
+    public double fromKelvin(double value);
 
 }

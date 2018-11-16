@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void convert(View view) {
-        double convertedLeft = Double.parseDouble(fahr.toKelvin(this.getInput(view)));
-        double result = Double.parseDouble(celsius.fromKelvin(convertedLeft));
+        double convertedLeft = fahr.toKelvin(this.getInput(view));
+        double result = celsius.fromKelvin(convertedLeft);
 
         Log.i("DEBUG:", String.valueOf(result));
 
@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private double getInput(View view) {
         EditText input = (EditText) findViewById(R.id.editText__input);
-        double inputValue = Double.parseDouble(input.getText().toString());
+        String value = input.getText().toString();
+        double inputValue = Double.parseDouble(value);
 
         return inputValue;
     }

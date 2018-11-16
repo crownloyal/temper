@@ -11,21 +11,22 @@ class TemperatureUnit implements Temperature {
     public TemperatureUnit(String name, String toKelvin, String fromKelvin)  {
         this.name = name;
         this.toFunction = new ExpressionBuilder(toKelvin);
+        this.fromFunction = new ExpressionBuilder(fromKelvin);
     }
 
-    public String toKelvin(double value) {
+    public double toKelvin(double value) {
         return toFunction
                 .variable("x")
                 .build()
                 .setVariable("x", value)
-                .toString(); // this is dirty!
+                .evaluate();
     }
 
-    public String fromKelvin(double value) {
+    public double fromKelvin(double value) {
         return fromFunction
                 .variable("x")
                 .build()
                 .setVariable("x", value)
-                .toString();
+                .evaluate();
     }
 }
