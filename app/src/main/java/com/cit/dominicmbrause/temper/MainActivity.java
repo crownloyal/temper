@@ -33,17 +33,38 @@ public class MainActivity extends AppCompatActivity {
         return Double.parseDouble(value);
     }
 
+    private void swapSides(View view) throws CloneNotSupportedException {
+        TempTextView textLeft = findViewById(R.id.textView__left);
+        TempTextView textRight = findViewById(R.id.textView__right);
+
+        TempTextView temp = (TempTextView) textLeft.clone();
+        textLeft.assignTemp(textRight.getCurrent());
+        textRight.assignTemp(temp.getCurrent());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Prepare button
+        // Prepare tap events
         Button convertButton = findViewById(R.id.button__convert);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 convert(v);
+            }
+        });
+
+        TextView toggleSides = findViewById(R.id.textView__to);
+        toggleSides.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    swapSides(v);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 

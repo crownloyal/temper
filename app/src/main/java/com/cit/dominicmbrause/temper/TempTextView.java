@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-public class TempTextView extends android.support.v7.widget.AppCompatTextView {
+public class TempTextView extends android.support.v7.widget.AppCompatTextView implements Cloneable {
 
     private TemperatureUnit current;
 
@@ -22,6 +22,10 @@ public class TempTextView extends android.support.v7.widget.AppCompatTextView {
         super(context, attrs, defStyleAttr);
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     // API
     public void assignTemp(TemperatureUnit unit) {
