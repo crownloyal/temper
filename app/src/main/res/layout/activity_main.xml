@@ -50,6 +50,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button__convert"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Enter degree" />
 
@@ -57,15 +58,12 @@
         android:id="@+id/button__convert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="70dp"
         android:elevation="8dp"
         android:text="@string/button__convert"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
-        app:layout_constraintStart_toStartOf="parent"
         tools:text="Convert" />
 
     <TextView
