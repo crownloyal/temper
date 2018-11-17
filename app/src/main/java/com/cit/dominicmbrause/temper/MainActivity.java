@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     static UnitSelectionController unitSelector = new UnitSelectionController();
@@ -20,7 +22,11 @@ public class MainActivity extends AppCompatActivity {
         double convertedToKelvin = leftSide.getCurrent().toKelvin(getInput(view));
         double result = rightSide.getCurrent().fromKelvin(convertedToKelvin);
 
-        updateResult(view, result, rightSide.getCurrent());
+        // Conversion magic
+        DecimalFormat df = new DecimalFormat("####0.00");
+        double formattedResult = Double.valueOf(df.format(result));
+
+        updateResult(view, formattedResult, rightSide.getCurrent());
     }
     private void updateResult(View view, double result, TemperatureUnit unit) {
         TextView textResult = findViewById(R.id.TextView__result);
@@ -42,12 +48,31 @@ public class MainActivity extends AppCompatActivity {
         textRight.assignTemp(temp.getCurrent());
     }
 
+    private void nextUnit(View v, TempTextView text) {
+        text.assignTemp(unitSelector.getNext());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Prepare tap events
+        // Prepare Units
+        TemperatureUnit kelvin = new TemperatureUnit("Kelvin", "x + 0", "x + 0");
+        TemperatureUnit celsius = new TemperatureUnit("Celsius", "x + 273.15", "x - 273.15");
+        TemperatureUnit fahr = new TemperatureUnit("Fahrenheit", "(x + 273.15) * (9/5) - 32", "(x - 273.15) * (9/5) + 32");
+        unitSelector.addUnit(kelvin);
+        unitSelector.addUnit(celsius);
+        unitSelector.addUnit(fahr);
+
+        // Set left and right defaults
+        final TempTextView textLeft = findViewById(R.id.textView__left);
+        final TempTextView textRight = findViewById(R.id.textView__right);
+        textLeft.assignTemp(unitSelector.getNext());
+        textRight.assignTemp(unitSelector.getNext());
+
+
+        // Set up tap events
         Button convertButton = findViewById(R.id.button__convert);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,18 +93,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Prepare Paging
-        TemperatureUnit kelvin = new TemperatureUnit("Kelvin", "x + 0", "x + 0");
-        TemperatureUnit celsius = new TemperatureUnit("Celsius", "x + 273.15", "x - 273.15");
-        TemperatureUnit fahr = new TemperatureUnit("Fahrenheit", "9/5 * (x + 273.15) + 32", "9/5 * (x − 273.15) + 32");
-        unitSelector.addUnit(kelvin);
-        unitSelector.addUnit(celsius);
-        unitSelector.addUnit(fahr);
+        textLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextUnit(v, textLeft);
+            }
+        });
 
-        // Set left and right defaults
-        TempTextView textLeft = findViewById(R.id.textView__left);
-        TempTextView textRight = findViewById(R.id.textView__right);
-        textLeft.assignTemp(unitSelector.getNext());
-        textRight.assignTemp(unitSelector.getNext());
+        textRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextUnit(v, textRight);
+            }
+        });
     }
+
 }

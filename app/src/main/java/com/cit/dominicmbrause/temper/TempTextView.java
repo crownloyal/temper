@@ -2,6 +2,7 @@ package com.cit.dominicmbrause.temper;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ViewParent;
 import android.widget.TextView;
 
 public class TempTextView extends android.support.v7.widget.AppCompatTextView implements Cloneable {
@@ -32,9 +33,6 @@ public class TempTextView extends android.support.v7.widget.AppCompatTextView im
         setCurrent(unit);
         updateText();
     }
-    private void updateText() {
-        setText(getCurrent().name);
-    }
 
     // S&G
     private void setCurrent(TemperatureUnit unit) {
@@ -42,5 +40,8 @@ public class TempTextView extends android.support.v7.widget.AppCompatTextView im
     }
     public TemperatureUnit getCurrent() {
         return current;
+    }
+    private void updateText() {
+        setText(getCurrent().name);
     }
 }
