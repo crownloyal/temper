@@ -39,7 +39,6 @@ class UnitSelectionController {
         return index;
     }
 
-
     void addUnit(TemperatureUnit temp) {
         temps.add(temp);
         counter.add(0);

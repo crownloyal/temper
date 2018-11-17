@@ -87,6 +87,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Check for existing data
+        if (!(savedInstanceState == null)) {
+            final EditText input = findViewById(R.id.editText__input);
+            final TextView result = findViewById(R.id.textView__result);
+            String resultValue = savedInstanceState.getString("RESULT");
+            String inputValue = savedInstanceState.getString("INPUT");
+
+            input.setText(inputValue);
+            result.setText(resultValue);
+        }
+
         // Prepare Units
         setupController();
 
@@ -142,4 +153,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        final EditText input = findViewById(R.id.editText__input);
+        final TextView result = findViewById(R.id.textView__result);
+
+        savedInstanceState.putString("INPUT", input.getText().toString());
+        savedInstanceState.putString("RESULT", result.getText().toString());
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }

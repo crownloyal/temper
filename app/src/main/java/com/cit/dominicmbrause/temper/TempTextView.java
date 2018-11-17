@@ -1,9 +1,9 @@
 package com.cit.dominicmbrause.temper;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.view.ViewParent;
-import android.widget.TextView;
 
 public class TempTextView extends android.support.v7.widget.AppCompatTextView implements Cloneable {
 
