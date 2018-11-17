@@ -4,4 +4,6 @@
     <string name="textview_result">Result</string>
     <string name="button__convert">Convert</string>
     <string name="edittext_input">0</string>
+    <string name="textView__to">to</string>
+    <string name="textview__share">share</string>
 </resources>
