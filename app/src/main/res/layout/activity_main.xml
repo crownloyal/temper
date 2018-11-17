@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.cit.dominicmbrause.temper.TempTextView
         android:id="@+id/textView__left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Left" />
 
-    <TextView
+    <com.cit.dominicmbrause.temper.TempTextView
         android:id="@+id/textView__right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,4 +92,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="to" />
+
 </android.support.constraint.ConstraintLayout>

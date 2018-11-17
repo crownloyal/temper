@@ -33,4 +33,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/exp4j-0.4.8.jar')
+    implementation 'com.android.support:support-v4:28.0.0'
 }
